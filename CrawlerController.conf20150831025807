@@ -104,9 +104,6 @@
 # conf.__widget__.filter, text
 # conf.__widget__.rotOffset, text
 # conf.__widget__.rotCorVal, text
-# conf.__widget__.mr, text
-# conf.__widget__.ar, text
-# conf.__widget__.gr, text
 
 
 # conf.__constraints__.gyroSensor, (0,1)
@@ -114,9 +111,6 @@
 # conf.__constraints__.BackRangeSensor, (0,1)
 # conf.__constraints__.AccelerationSensor, (0,1)
 # conf.__constraints__.MagneticSensor, (0,1)
-# conf.__constraints__.mr, 0<=x<=1.0
-# conf.__constraints__.ar, 0<=x<=1.0
-# conf.__constraints__.gr, 0<=x<=1.0
 
 ##============================================================
 ## Execution context settings

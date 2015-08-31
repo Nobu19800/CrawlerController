@@ -38,9 +38,6 @@ using namespace RTC;
 #include <rtm/DataInPort.h>
 #include <rtm/DataOutPort.h>
 
-#include "Crawler.h"
-#include "CalcOrientation.h"
-
 /*!
  * @class CrawlerController
  * @brief Crawler Controller
@@ -302,41 +299,11 @@ class CrawlerController
    */
   double m_rotOffset;
   /*!
-   * 直進する際に真っ直ぐに動くように計測した姿勢の変化した方向に抗
-   * う方向に回転する補正をかけるようにしています。このパラメータは
-   * 姿勢の変化量にかける係数です。
+   * 
    * - Name: rotCorVal rotCorVal
    * - DefaultValue: 15
    */
   double m_rotCorVal;
-  /*!
-   * 地磁気センサの計測値でのIIRフィルタの係数
-   * - Name: mr mr
-   * - DefaultValue: 0.2
-   * - Constraint: 0<=x<=1.0
-   */
-  double m_mr;
-  /*!
-   * 加速度センサの計測値でのIIRフィルタの係数
-   * - Name: ar ar
-   * - DefaultValue: 0.2
-   * - Constraint: 0<=x<=1.0
-   */
-  double m_ar;
-  /*!
-   * ジャイロセンサの計測値でのIIRフィルタの係数
-   * - Name: gr gr
-   * - DefaultValue: 1.0
-   * - Constraint: 0<=x<=1.0
-   */
-  double m_gr;
-  /*!
-   * 相補フィルタの係数
-   * - Name: r r
-   * - DefaultValue: 0.8
-   * - Constraint: 0<=x<=1.0
-   */
-  double m_r;
 
   // </rtc-template>
 
@@ -420,22 +387,6 @@ class CrawlerController
    * - Unit: m,rad
    */
   OutPort<RTC::TimedPose2D> m_posOut;
-
-  RTC::TimedDouble m_out0;
-  /*!
-   * 左モーターへ入力する電圧のPWMデューティー比
-   * - Type: RTC::TimedDouble
-   */
-  OutPort<RTC::TimedDouble> m_out0Out;
-
-  RTC::TimedDouble m_out1;
-  /*!
-   * 左モーターへ入力する電圧のPWMデューティー比
-   * - Type: RTC::TimedDouble
-   */
-  OutPort<RTC::TimedDouble> m_out1Out;
-
-
   
   // </rtc-template>
 
@@ -455,9 +406,6 @@ class CrawlerController
   // </rtc-template>
 
  private:
-	Crawler *m_crawler;
-	CalcOrientation *m_calc;
-	double last_posx, last_posy;
   // <rtc-template block="private_attribute">
   
   // </rtc-template>

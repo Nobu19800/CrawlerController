@@ -1,4 +1,4 @@
-set(comp_srcs CrawlerController.cpp CalcOrientation.cpp Crawler.cpp )
+set(comp_srcs CrawlerController.cpp CalcOrientation.cpp Crawler.cpp)
 set(standalone_srcs CrawlerControllerComp.cpp)
 
 if (DEFINED OPENRTM_INCLUDE_DIRS)

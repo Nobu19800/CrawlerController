@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rtc:RtcProfile rtc:version="0.2" rtc:id="RTC:Miyamoto Nobuhiko:Crawler:CrawlerController:1.0.0" xmlns:rtcExt="http://www.openrtp.org/namespaces/rtc_ext" xmlns:rtcDoc="http://www.openrtp.org/namespaces/rtc_doc" xmlns:rtc="http://www.openrtp.org/namespaces/rtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="CrawlerController" rtc:updateDate="2015-08-31T22:29:27.475+09:00" rtc:creationDate="2015-08-30T23:53:03+09:00" rtc:abstract="クローラー制御RTコンポーネント" rtc:version="1.0.0" rtc:vendor="Miyamoto Nobuhiko" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="Crawler Controller" rtc:category="Crawler" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="CrawlerController">
+    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="CrawlerController" rtc:updateDate="2015-08-31T00:21:32.645+09:00" rtc:creationDate="2015-08-30T23:53:03+09:00" rtc:abstract="クローラー制御RTコンポーネント" rtc:version="1.0.0" rtc:vendor="Miyamoto Nobuhiko" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="Crawler Controller" rtc:category="Crawler" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="CrawlerController">
         <rtcDoc:Doc rtcDoc:reference="" rtcDoc:license="LGPL" rtcDoc:creator="" rtcDoc:algorithm="" rtcDoc:inout="" rtcDoc:description="クローラー制御RTコンポーネント"/>
         <rtcExt:VersionUpLogs></rtcExt:VersionUpLogs>
     </rtc:BasicInfo>
@@ -21,7 +21,7 @@
         <rtc:OnModeChanged xsi:type="rtcDoc:action_status_doc" rtc:implemented="true"/>
     </rtc:Actions>
     <rtc:ConfigurationSet>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="0" rtc:type="int" rtc:name="gyroSensor">
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="1" rtc:type="int" rtc:name="gyroSensor">
             <rtc:Constraint>
                 <rtc:ConstraintUnitType>
                     <rtc:Or>
@@ -42,7 +42,7 @@
                     </rtc:Or>
                 </rtc:ConstraintUnitType>
             </rtc:Constraint>
-            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="1の時はジャイロセンサを使用する" rtcDoc:defaultValue="0" rtcDoc:dataname="gyroSensor"/>
+            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="1の時はジャイロセンサを使用する" rtcDoc:defaultValue="1" rtcDoc:dataname="gyroSensor"/>
             <rtcExt:Properties rtcExt:value="radio" rtcExt:name="__widget__"/>
         </rtc:Configuration>
         <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="1" rtc:type="int" rtc:name="FrontRangeSensor">
@@ -157,60 +157,12 @@
             <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="この値が大きいほど余分な回避運動が小さくなります。" rtcDoc:defaultValue="0.05" rtcDoc:dataname="filter"/>
             <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
         </rtc:Configuration>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="3.64" rtc:type="double" rtc:name="rotOffset">
-            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="センサの計測値から計算した姿勢角へのオフセット" rtcDoc:defaultValue="3.64" rtcDoc:dataname="rotOffset"/>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="0.5" rtc:type="double" rtc:name="rotOffset">
+            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="センサの計測値から計算した姿勢角へのオフセット" rtcDoc:defaultValue="0.5" rtcDoc:dataname="rotOffset"/>
             <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
         </rtc:Configuration>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="0.3" rtc:type="double" rtc:name="rotCorVal">
-            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="直進する際に真っ直ぐに動くように計測した姿勢の変化した方向に抗う方向に回転する補正をかけるようにしています。このパラメータは姿勢の変化量にかける係数です。" rtcDoc:defaultValue="15" rtcDoc:dataname="rotCorVal"/>
-            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
-        </rtc:Configuration>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="0.2" rtc:type="double" rtc:name="mr">
-            <rtc:Constraint>
-                <rtc:ConstraintUnitType>
-                    <rtc:propertyIsBetween>
-                        <rtc:LowerBoundary>0</rtc:LowerBoundary>
-                        <rtc:UpperBoundary>1.0</rtc:UpperBoundary>
-                    </rtc:propertyIsBetween>
-                </rtc:ConstraintUnitType>
-            </rtc:Constraint>
-            <rtcDoc:Doc rtcDoc:constraint="0&lt;=x&lt;=1.0" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="地磁気センサの計測値でのIIRフィルタの係数" rtcDoc:defaultValue="0.2" rtcDoc:dataname="mr"/>
-            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
-        </rtc:Configuration>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="0.2" rtc:type="double" rtc:name="ar">
-            <rtc:Constraint>
-                <rtc:ConstraintUnitType>
-                    <rtc:propertyIsBetween>
-                        <rtc:LowerBoundary>0</rtc:LowerBoundary>
-                        <rtc:UpperBoundary>1.0</rtc:UpperBoundary>
-                    </rtc:propertyIsBetween>
-                </rtc:ConstraintUnitType>
-            </rtc:Constraint>
-            <rtcDoc:Doc rtcDoc:constraint="0&lt;=x&lt;=1.0" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="加速度センサの計測値でのIIRフィルタの係数" rtcDoc:defaultValue="0.2" rtcDoc:dataname="ar"/>
-            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
-        </rtc:Configuration>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="1.0" rtc:type="double" rtc:name="gr">
-            <rtc:Constraint>
-                <rtc:ConstraintUnitType>
-                    <rtc:propertyIsBetween>
-                        <rtc:LowerBoundary>0</rtc:LowerBoundary>
-                        <rtc:UpperBoundary>1.0</rtc:UpperBoundary>
-                    </rtc:propertyIsBetween>
-                </rtc:ConstraintUnitType>
-            </rtc:Constraint>
-            <rtcDoc:Doc rtcDoc:constraint="0&lt;=x&lt;=1.0" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="ジャイロセンサの計測値でのIIRフィルタの係数" rtcDoc:defaultValue="1.0" rtcDoc:dataname="gr"/>
-            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
-        </rtc:Configuration>
-        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="0.8" rtc:type="double" rtc:name="r">
-            <rtc:Constraint>
-                <rtc:ConstraintUnitType>
-                    <rtc:propertyIsBetween>
-                        <rtc:LowerBoundary>0</rtc:LowerBoundary>
-                        <rtc:UpperBoundary>8</rtc:UpperBoundary>
-                    </rtc:propertyIsBetween>
-                </rtc:ConstraintUnitType>
-            </rtc:Constraint>
-            <rtcDoc:Doc rtcDoc:constraint="0&lt;=x&lt;=8" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="相補フィルタの係数" rtcDoc:defaultValue="0.8" rtcDoc:dataname="r"/>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="" rtc:defaultValue="15" rtc:type="double" rtc:name="rotCorVal">
+            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="" rtcDoc:description="" rtcDoc:defaultValue="15" rtcDoc:dataname="rotCorVal"/>
             <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
         </rtc:Configuration>
     </rtc:ConfigurationSet>
@@ -243,12 +195,6 @@
     </rtc:DataPorts>
     <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="RIGHT" rtcExt:variableName="" rtc:unit="" rtc:subscriptionType="" rtc:dataflowType="" rtc:interfaceType="" rtc:idlFile="" rtc:type="RTC::TimedPose2D" rtc:name="pos" rtc:portType="DataOutPort">
         <rtcDoc:Doc rtcDoc:operation="" rtcDoc:occerrence="" rtcDoc:unit="m,rad" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="RTC::TimedPose2D" rtcDoc:description="センサ情報から計算した現在位置、姿勢(位置の計測は実装できていないので左右モーターの電圧が正の場合は前進、負の場合は後退するようにしてある)"/>
-    </rtc:DataPorts>
-    <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="RIGHT" rtcExt:variableName="" rtc:unit="" rtc:subscriptionType="" rtc:dataflowType="" rtc:interfaceType="" rtc:idlFile="" rtc:type="RTC::TimedDouble" rtc:name="out0" rtc:portType="DataOutPort">
-        <rtcDoc:Doc rtcDoc:operation="" rtcDoc:occerrence="" rtcDoc:unit="" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="RTC::TimedDouble" rtcDoc:description="左モーターへ入力する電圧のPWMデューティー比"/>
-    </rtc:DataPorts>
-    <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="RIGHT" rtcExt:variableName="" rtc:unit="" rtc:subscriptionType="" rtc:dataflowType="" rtc:interfaceType="" rtc:idlFile="" rtc:type="RTC::TimedDouble" rtc:name="out1" rtc:portType="DataOutPort">
-        <rtcDoc:Doc rtcDoc:operation="" rtcDoc:occerrence="" rtcDoc:unit="" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="RTC::TimedDouble" rtcDoc:description="右モーターへ入力する電圧のPWMデューティー比"/>
     </rtc:DataPorts>
     <rtc:Language xsi:type="rtcExt:language_ext" rtc:kind="C++">
         <rtcExt:targets rtcExt:os="ubilinux" rtcExt:langVersion="New Version">

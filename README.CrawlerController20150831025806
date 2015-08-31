@@ -12,7 +12,7 @@
 #   --module-desc='Crawler Controller' --module-version=1.0.0 --module-vendor=Miyamoto Nobuhiko 
 #   --module-category=Crawler --module-comp-type=STATIC 
 #   --module-act-type=PERIODIC --module-max-inst=1 
-#   --config=gyroSensor:int:1 --config=FrontRangeSensor:int:1 --config=BackRangeSensor:int:1 --config=AccelerationSensor:int:1 --config=MagneticSensor:int:1 --config=bias:double:1.0 --config=frontDistance:double:0.5 --config=backDistance:double:0.1 --config=filter:double:0.05 --config=rotOffset:double:0.5 --config=rotCorVal:double:15 --config=mr:double:0.2 --config=ar:double:0.2 --config=gr:double:1.0 
+#   --config=gyroSensor:int:1 --config=FrontRangeSensor:int:1 --config=BackRangeSensor:int:1 --config=AccelerationSensor:int:1 --config=MagneticSensor:int:1 --config=bias:double:1.0 --config=frontDistance:double:0.5 --config=backDistance:double:0.1 --config=filter:double:0.05 --config=rotOffset:double:0.5 --config=rotCorVal:double:15 
 #   --inport=acc:RTC::TimedAcceleration3D --inport=magn:RTC::TimedDoubleSeq --inport=gyro:RTC::TimedAngularVelocity3D --inport=range0:RTC::TimedDouble --inport=range1:RTC::TimedDouble --inport=range2:RTC::TimedDouble --inport=range3:RTC::TimedDouble --inport=in0:RTC::TimedDouble --inport=in1:RTC::TimedDouble --outport=pos:RTC::TimedPose2D 
 
 
@@ -363,39 +363,12 @@ Overview:    クローラー制御RTコンポーネント
 		Constraint:      
 
 		Name:            rotCorVal rotCorVal
-		Description:     直進する際に真っ直ぐに動くように計測した姿勢の
-		                 変化した方向に抗う方向に回転する補正をかけるよ
-		                 うにしています。このパラメータは姿勢の変化量に
-		                 かける係数です。
+		Description:     
 		Type:            double
 		DefaultValue:    15 15
 		Unit:            
 		Range:           
 		Constraint:      
-
-		Name:            mr mr
-		Description:     地磁気センサの計測値でのIIRフィルタの係数
-		Type:            double
-		DefaultValue:    0.2 0.2
-		Unit:            
-		Range:           
-		Constraint:      0<=x<=1.0
-
-		Name:            ar ar
-		Description:     加速度センサの計測値でのIIRフィルタの係数
-		Type:            double
-		DefaultValue:    0.2 0.2
-		Unit:            
-		Range:           
-		Constraint:      0<=x<=1.0
-
-		Name:            gr gr
-		Description:     ジャイロセンサの計測値でのIIRフィルタの係数
-		Type:            double
-		DefaultValue:    1.0 1.0
-		Unit:            
-		Range:           
-		Constraint:      0<=x<=1.0
 
 # </rtc-template> 
 

@@ -1,8 +1,10 @@
 // -*- C++ -*-
 /*!
- * @file crawlercontrollerComp.cpp
+ * @file CrawlerControllerComp.cpp
  * @brief Standalone component
  * @date $Date$
+ *
+ * LGPL
  *
  * $Id$
  */
@@ -11,16 +13,16 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
-#include "crawlercontroller.h"
+#include "CrawlerController.h"
 
 
 void MyModuleInit(RTC::Manager* manager)
 {
-  crawlercontrollerInit(manager);
+  CrawlerControllerInit(manager);
   RTC::RtcBase* comp;
 
   // Create a component
-  comp = manager->createComponent("crawlercontroller");
+  comp = manager->createComponent("CrawlerController");
 
   if (comp==NULL)
   {
