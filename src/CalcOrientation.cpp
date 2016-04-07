@@ -151,8 +151,8 @@ void CalcOrientation::calc(double ax, double ay, double az, double mx, double my
 */
 void CalcOrientation::calcOrientation(double ax, double ay, double az, double mx, double my, double mz, double &rx, double &ry, double &rz)
 {
-	ry = atan2(ay,az) - M_PI;
-	rx = atan2(-ax,sqrt(ay*ay+az*az));
+	rx = atan2(ay,az) - M_PI;
+	ry = atan2(-ax,sqrt(ay*ay+az*az));
 
 	double mxi = cos(ry)*mx + sin(rx)*sin(ry)*my + cos(rx)*sin(ry)*mz;
 	double myi = cos(rx)*my - sin(rx)*mz;
